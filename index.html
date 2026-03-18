@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Special for You ❤️</title>
+    <style>
+        :root {
+            --pink: #ff85a2;
+            --light-pink: #ffe4e1;
+            --dark-pink: #d63384;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            transition: all 0.5s ease;
+        }
+
+        .hidden { display: none; }
+
+        h1 { color: var(--dark-pink); font-size: 22px; margin-bottom: 20px; }
+        img.main-img { width: 160px; border-radius: 15px; margin-bottom: 15px; }
+
+        /* Buttons */
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: var(--pink);
+            color: white;
+            font-weight: bold;
+        }
+        button:hover { transform: scale(1.05); background: var(--dark-pink); }
+        #noBtn { background: #666; }
+
+        /* Quiz Styles */
+        .quiz-option {
+            background: #f8f9fa;
+            border: 2px solid var(--light-pink);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .quiz-option:hover { background: var(--light-pink); }
+
+        /* Polaroid Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .polaroid {
+            background: white;
+            padding: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: rotate(-3deg);
+        }
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid img { width: 100%; height: 120px; object-fit: cover; }
+        .polaroid p { font-size: 12px; margin: 5px 0 0; font-family: 'Dancing Script', cursive; }
+
+        /* Letter Style */
+        .letter-box {
+            background: #fffdf0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+        .message-box {
+            margin-bottom: 15px;
+        }
+
+        .label {
+            background-color: #ffb1bb;
+            color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+            margin-bottom: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .content {
+            background-color: white;
+            color: #555;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ffdae0;
+            font-size: 1.1rem;
+        }
+
+        .question {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #7d4444;
+            margin-top: 40px;
+        }
+
+        .btn {
+            background-color: #ff5c75;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(255, 92, 117, 0.4);
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="section-proposal">
+            <img class="main-img" id="propImg" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXJ3bm80eXp6bmR6bmR6bmR6bmR6bmR6bmR6bmR6bmR6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif">
+            <h1 id="propText">Do you love me? 🥺</h1>
+            <div class="btn-group">
+                <button id="yesBtn" onclick="showSection('section-success')">Yes</button>
+                <button id="noBtn" onclick="handleNo()">No</button>
+            </div>
+        </div>
+
+        <div id="section-success" class="hidden">
+            <img class="main-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ0eG8yeXJ3bm80eXp6bmR6bmR6bmR6bmR6bmR6bmR6bmR6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26BRv0ThflsHCqxlK/giphy.gif">
+            <h1>I love youu so much bachha! ❤️✨</h1>
+            <p>I have something more for you my jaan...</p>
+            <button onclick="showSection('section-menu')">Open Surprise 🎁</button>
+        </div>
+
+        <div id="section-menu" class="hidden">
+            <h1>Something for my Love 💝</h1>
+            <div class="btn-group" style="flex-direction: column;">
+                <button onclick="showSection('section-quiz')">📝 Quiz for You</button>
+                <button onclick="showSection('section-letter')">💌  Baate Jo Me Bol Naa Pata Hu!</button>
+                <button onclick="showSection('section-massege')"> Messege for my darling !</button>
+                <button onclick="showSection('section-gallery')">📸 Look at this Baby!</button>
+                <button onclick="showSection('section-Thankyou')">Thankyou!</button>
+            </div>
+        </div>
+
+        <div id="section-quiz" class="hidden">
+            <h1>Quiz for you 🤔</h1>
+            <p id="quiz-q">Do you ever leave me?</p>
+            <div id="quiz-options">
+                <div class="quiz-option" onclick="quizAnswer()">Kabhi nahi</div>
+                <div class="quiz-option" onclick="quizAnswer()">yes (Wrong Answer!)</div>
+                <div class="quiz-option" onclick="quizAnswer()">Socho bhi nahi</div>
+            </div>
+            <button onclick="showSection('section-menu')" style="margin-top:15px; background:#666;">Back</button>
+        </div>
+
+        <div id="section-letter" class="hidden">
+            <h1>A Letter For You ✉️</h1>
+            <div class="letter-box">
+                Dear Baby,<br><br>
+                    I just wanted to say how much you mean to me. You are my best friend, my love, and my everything. Sometimes, words seem so small compared to what I feel for you, but I’ll try my best to capture the love that fills my heart whenever I think of you. You’re not only my girlfriend but also my partner, my inspiration, and my constant. Every day, I find more reasons to appreciate you, admire you, and, most importantly, love you even more.
+
+When I say “I love you,” I mean that I see everything beautiful in you—your kindness, your dreams, and even your unique quirks. I love how thoughtful you are, how you push yourself despite your struggles, and how you constantly strive to be your best. You remind me of the strength and resilience it takes to face challenges head-on, and I’m so proud of you for everything you accomplish, even if you can’t always see it yourself..I will always be there for you whenever you need me .Thank you for being you and for always making me smile.<br><br>
+                Always yours, ❤️
+            </div>
+            <button onclick="showSection('section-menu')" style="margin-top:15px;">Back</button>
+        </div>
+
+        <div id="section-gallery" class="hidden">
+            <h1>Our memories together cutie 🥰</h1>
+            <div class="gallery">
+                <div class="polaroid"><img src="Img4.jpg"><p>Sweet Smile</p></div>
+                <div class="polaroid"><img src="Img1.jpg"><p>The Best Day</p></div>
+                <div class="polaroid"><img src="Img2.jpg"><p>My World</p></div>
+                <div class="polaroid"><img src="Img3.jpg"><p>Forever</p></div>
+                <div class="polaroid"><img src="Img5.jpg"><p>My World</p></div>
+                <div class="polaroid"><img src="Img6.jpg"><p>Forever</p></div>
+            </div>
+            <button onclick="showSection('section-menu')" style="margin-top:15px;">Back</button>
+        </div>
+        
+        <div id="section-massege" class="hidden">
+        <h1>Love Messages For You madam jii!<span class="sparkle">✨</span></h1>
+
+        <div class="section-massege">
+            <div class="label">Surprise #1 💌</div>
+            <div class="content">Tum duniya ke sabse best partner ho!</div>
+        </div>
+
+        <div class="message-box">
+            <div class="label">Surprise #2 💌</div>
+            <div class="content">When I wrap my arms around you, I really, really never want to let go.</div>
+        </div>
+        
+        <div class="message-box">
+            <div class="label">Surprise #3 💌</div>
+            <div class="content">I love when I catch you looking at me.</div>
+            
+
+        <p class="question">Ready for our date?</p>
+        
+        <button class="btn" onclick="celebrate()">ABSOLUTELY! ❤️</button>
+    </div>
+      <button onclick="showSection('section-menu')" style="margin-top:15px;">Back</button>
+    </div>
+    
+       <div id="section-Thankyou" class="hidden">
+         <h1>THANKYOU MADAM JII❤️!<span class="sparkle">✨</span></h1>
+         <div class="letter-box">
+           Madam jii,<br><br>
+                  Thank you for always being there for me.”
+                  
+“Thank you for loving me, flaws and all.”
+
+“I’m so grateful for your unconditional love.”
+
+“Your love has shown me that there’s beauty in the world.”
+
+“I can never thank you enough for loving me with no conditions.”
+
+“Your love is a constant reminder that I am worthy.”
+
+“You have loved me through my darkness moments, and I’ll never be able to fully repay you.”
+
+“Thank you for loving me even when I struggled to love myself.”
+
+“I appreciate every moment with you.”
+
+“Thank you for all the sacrifices you’ve made for us.”
+
+“Your love has shown me what true devotion is.”
+“You’ve put me first, and I cannot thank you enough for that.”
+“I am forever grateful that you’ve made our relationship a priority.”
+“Thank you for always being willing to go the extra mile.”
+“You sacrificed your time to make me happy. Thank you.”
+       <div class="gallery">
+                <div class="polaroid"><img src="img7.jpg"><p>Sweet Smile</p></div>
+                <div class="polaroid"><img src="img8.jpg"><p>The Best Day</p></div>
+                <div class="polaroid"><img src="img9.jpg"><p>My World</p></div>
+                <div class="polaroid"><img src="Img10.jpg"><p>Forever</p></div>
+                </div>
+                <button onclick="showSection('section-menu')" style="margin-top:15px;">Back</button>
+        </div>
+                
+    <script>
+        let noCount = 0;
+        const noMessages = ["Are you sure?", "Think again! 😅", "Pukka? 🤨", "Maan jao na... 🥺"];
+
+        function handleNo() {
+            const yesBtn = document.getElementById('yesBtn');
+            const propText = document.getElementById('propText');
+            if(noCount < noMessages.length) propText.innerText = noMessages[noCount];
+            noCount++;
+            let size = 16 + (noCount * 15);
+            yesBtn.style.fontSize = size + "px";
+            yesBtn.style.padding = (noCount * 10 + 10) + "px " + (noCount * 20 + 20) + "px";
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function quizAnswer() {
+            alert("Sahi jawab! You're the best! ❤️");
+        }
+    </script>
+</body>
+</html>
